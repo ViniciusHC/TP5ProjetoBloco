@@ -12,15 +12,16 @@ public class ProdutoController {
 
     static ProdutoRepository repository = new ProdutoRepository();
     static ArrayList<ProdutoModel> produtos = repository.lerProdutos();
-
     private static String resource = "/produtos";
-        public static void config(Javalin app){
-            app.get(resource, ProdutoController::getProdutoList);
-            app.get(resource+"/{id}", ProdutoController::getProdutoByID);
-            app.post(resource, ProdutoController::inserirProduto);
-            app.put(resource+"/{id}", ProdutoController::alterarProduto);
-            app.delete(resource+"/{id}", ProdutoController::deletarProduto);
-        }
+
+    public static void config(Javalin app){
+        app.get(resource, ProdutoController::getProdutoList);
+        app.get(resource+"/{id}", ProdutoController::getProdutoByID);
+        app.post(resource, ProdutoController::inserirProduto);
+        app.patch(resource+"/{id}", ProdutoController::alterarProdutoParcial);
+        app.put(resource+"/{id}", ProdutoController::alterarProduto);
+        app.delete(resource+"/{id}", ProdutoController::deletarProduto);
+    }
 
     private static void getProdutoList(Context context){
         context.status(200).json(produtos);
@@ -59,6 +60,27 @@ public class ProdutoController {
                 produtoModelNaLista.setNome(produtoModelAlterado.getNome());
                 produtoModelNaLista.setPreco(produtoModelAlterado.getPreco());
                 produtoModelNaLista.setQuantidade(produtoModelAlterado.getQuantidade());
+                break;
+            }
+        }
+        repository.gravarProdutos(produtos);
+        context.status(200).json(produtoModelAlterado);
+    }
+
+    private static void alterarProdutoParcial(Context context){
+        ProdutoModel produtoModelAlterado = context.bodyAsClass(ProdutoModel.class);
+        Integer id = parseInt(context.pathParam("id"));
+        for (ProdutoModel p : produtos){
+            if (p.getId() == id){
+                if (produtoModelAlterado.getNome() != null)
+                    p.setNome(produtoModelAlterado.getNome());
+
+                if (produtoModelAlterado.getPreco() != 0.0) {
+                    p.setPreco(produtoModelAlterado.getPreco());
+                }
+                if (produtoModelAlterado.getQuantidade() != 0) {
+                    p.setQuantidade(produtoModelAlterado.getQuantidade());
+                }
                 break;
             }
         }
