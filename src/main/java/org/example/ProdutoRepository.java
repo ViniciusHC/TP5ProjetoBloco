@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class ProdutoRepository {
 
-    String Arquivo = "C:\\Users\\vinic\\OneDrive\\Área de Trabalho/produtos.csv";
+    String Arquivo = "produtos.csv";
 
    public ArrayList<ProdutoModel> lerProdutos(){
         ArrayList<ProdutoModel> produtosEmEstoque = new ArrayList<>();

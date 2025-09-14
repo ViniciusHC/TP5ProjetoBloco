@@ -7,6 +7,5 @@ public class Main {
         var app = Javalin.create();
         ProdutoController.config(app);
         app.start();
-
     }
 }
