@@ -1,14 +1,14 @@
 package org.example;
 
-public class Produto {
+public class ProdutoModel {
     private int id;
     private String nome;
     private int quantidade;
     private float preco;
 
-    public Produto(){}
+    public ProdutoModel(){}
 
-    public Produto(int id, String nome, int quantidade, float preco) {
+    public ProdutoModel(int id, String nome, int quantidade, float preco) {
         this.id = id;
         this.nome = nome;
         this.quantidade = quantidade;
