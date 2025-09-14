@@ -1,8 +1,11 @@
 ﻿# TP5ProjetoBloco
- :arrow_down::arrow_down::arrow_down:
+
+:arrow_down::arrow_down::arrow_down:
+ 
 Para gravar o arquivo corretamente:
 1 - Salvar o arquivo produtos.csv na pasta desejada
 2 - alterar caminho no String Arquivo na classe ProdutoRepository para o caminho que o arquivo produtos.csv está salvo.
 
 OBS. Para testar funcionamento do POST/PUT/DELE utilizei o - https://www.postman.com/ 
+
 
