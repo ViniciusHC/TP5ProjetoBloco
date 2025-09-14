@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) {
         var app = Javalin.create();
 
-        ProductController.config(app);
+        ProdutoController.config(app);
         app.start();
 
     }

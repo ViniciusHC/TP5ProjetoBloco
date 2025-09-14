@@ -3,23 +3,22 @@ package org.example;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ProductController {
+public class ProdutoController {
 
-    private static Map<String, Product> products = new HashMap<>();
+    static ProdutoRepository repository = new ProdutoRepository();
+    static ArrayList<Produto> produtos = repository.lerProdutos();
 
-
-    private static String resource = "/products";
-
+    private static String resource = "/produtos";
         public static void config(Javalin app){
-//            products.put("1", new Product(1,"Camiseta", 2, 10.87f));
-            app.get(resource, ProductController::getProductsList);
+            app.get(resource, ProdutoController::getProductsList);
 
         }
 
     private static void getProductsList(Context context){
-        context.status(200).json(products);
+        context.status(200).json(produtos);
     }
 }

@@ -1,18 +1,18 @@
 package org.example;
 
-public class Product {
+public class Produto {
     private int id;
-    private String name;
+    private String nome;
     private int quantidade;
-    private float price;
+    private float preco;
 
-    public Product(){}
+    public Produto(){}
 
-    public Product(int id, String name, int quantidade, float price) {
+    public Produto(int id, String nome, int quantidade, float preco) {
         this.id = id;
-        this.name = name;
+        this.nome = nome;
         this.quantidade = quantidade;
-        this.price = price;
+        this.preco = preco;
     }
 
     public int getId() {
@@ -23,12 +23,12 @@ public class Product {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNome() {
+        return nome;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public int getQuantidade() {
@@ -39,12 +39,12 @@ public class Product {
         this.quantidade = quantidade;
     }
 
-    public float getPrice() {
-        return price;
+    public float getPreco() {
+        return preco;
     }
 
-    public void setPrice(float price) {
-        this.price = price;
+    public void setPreco(float preco) {
+        this.preco = preco;
     }
 
 
