@@ -18,6 +18,7 @@ public class ProdutoController {
             app.get(resource, ProdutoController::getProdutoList);
             app.get(resource+"/{id}", ProdutoController::getProdutoByID);
             app.post(resource, ProdutoController::inserirProduto);
+            app.put(resource+"/{id}", ProdutoController::alterarProduto);
         }
 
     private static void getProdutoList(Context context){
@@ -47,6 +48,21 @@ public class ProdutoController {
         produtos.add(produto);
         repository.gravarProdutos(produtos);
         context.status(200).json(produto);
+    }
+
+    private static void alterarProduto(Context context){
+        Produto produtoAlterado = context.bodyAsClass(Produto.class);
+        Integer id = parseInt(context.pathParam("id"));
+        for (Produto produtoNaLista : produtos){
+            if (produtoNaLista.getId() == id){
+                produtoNaLista.setNome(produtoAlterado.getNome());
+                produtoNaLista.setPreco(produtoAlterado.getPreco());
+                produtoNaLista.setQuantidade(produtoAlterado.getQuantidade());
+                break;
+            }
+        }
+        repository.gravarProdutos(produtos);
+        context.status(200).json(produtoAlterado);
     }
 
 }
