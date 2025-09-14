@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 public class ProdutoRepository {
 
-
    public ArrayList<Produto> lerProdutos(){
         String Arquivo = "C:\\Users\\vinic\\OneDrive\\Área de Trabalho/produtos.csv";
         ArrayList<Produto> produtosEmEstoque = new ArrayList<>();
@@ -32,7 +31,7 @@ public class ProdutoRepository {
     }
 
     public void gravarProdutos(ArrayList<Produto> produtos) {
-        String Arquivo = "c:/Arquivo/TP3 Projeto Bloco/Pedidos.csv";
+        String Arquivo = "C:\\Users\\vinic\\OneDrive\\Área de Trabalho/produtos.csv";
         try {
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Arquivo), "UTF-8"));
             bw.write("id; nome; preco; quantidade");
@@ -44,6 +43,7 @@ public class ProdutoRepository {
                         produto.getPreco() + ";" +
                         produto.getQuantidade()
                 );
+                bw.newLine();
             }
             bw.close();
         }

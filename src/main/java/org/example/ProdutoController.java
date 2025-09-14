@@ -17,6 +17,7 @@ public class ProdutoController {
         public static void config(Javalin app){
             app.get(resource, ProdutoController::getProdutoList);
             app.get(resource+"/{id}", ProdutoController::getProdutoByID);
+            app.post(resource, ProdutoController::inserirProduto);
         }
 
     private static void getProdutoList(Context context){
@@ -38,4 +39,14 @@ public class ProdutoController {
             context.status(404).result("Produto não encontrado");
         }
     }
+
+    private static void inserirProduto(Context context){
+        Produto produto = context.bodyAsClass(Produto.class);
+        int newKey = produtos.size() + 1;
+        produto.setId(newKey);
+        produtos.add(produto);
+        repository.gravarProdutos(produtos);
+        context.status(200).json(produto);
+    }
+
 }
