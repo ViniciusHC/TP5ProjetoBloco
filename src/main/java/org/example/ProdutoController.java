@@ -9,10 +9,12 @@ import java.util.Map;
 public class ProductController {
 
     private static Map<String, Product> products = new HashMap<>();
+
+
     private static String resource = "/products";
 
         public static void config(Javalin app){
-            products.put("1", new Product(1,"Camiseta", 2, 10.87f));
+//            products.put("1", new Product(1,"Camiseta", 2, 10.87f));
             app.get(resource, ProductController::getProductsList);
 
         }
