@@ -19,6 +19,7 @@ public class ProdutoController {
             app.get(resource+"/{id}", ProdutoController::getProdutoByID);
             app.post(resource, ProdutoController::inserirProduto);
             app.put(resource+"/{id}", ProdutoController::alterarProduto);
+            app.delete(resource+"/{id}", ProdutoController::deletarProduto);
         }
 
     private static void getProdutoList(Context context){
@@ -65,4 +66,15 @@ public class ProdutoController {
         context.status(200).json(produtoAlterado);
     }
 
+    private static void deletarProduto(Context context){
+        Integer id = parseInt(context.pathParam("id"));
+        for (int i = 0; i < produtos.size(); i++){
+            if (produtos.get(i).getId() == id){
+                produtos.remove(i);
+                break;
+            }
+        }
+        repository.gravarProdutos(produtos);
+        context.status(200).json("Produto removido com sucesso");
+    }
 }
